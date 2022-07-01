@@ -6,7 +6,7 @@ const PlanesSchema = mongoose.Schema(
       required: true,
       ref: "User",
     },
-    nameProdut: {
+    namePlane: {
       type: String,
       required: true,
     },
@@ -14,16 +14,8 @@ const PlanesSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    category: {
+    descriptionPlane: {
       type: String,
-      required: true,
-    },
-    descriptionProduct: {
-      type: String,
-      required: true,
-    },
-    imagesList: {
-      type: Array,
       required: true,
     },
   },
@@ -32,6 +24,6 @@ const PlanesSchema = mongoose.Schema(
   }
 );
 
-const Planes = mongoose.model("products", PlanesSchema);
+const Planes = mongoose.model("planes", PlanesSchema);
 
 export default Planes;

@@ -1,6 +1,5 @@
 import asyncHandler from "express-async-handler";
 import Planes from "../models/planesModel.js";
-import Products from "../models/planesModel.js";
 
 // @desc    Fetch all products
 // @route   GET /api/products
@@ -59,16 +58,14 @@ const deletePlanes = asyncHandler(async (req, res) => {
 // @route   POST /api/products
 // @access  Private/Admin
 const createPlanes = asyncHandler(async (req, res) => {
-  const product = new Planes({
+  const plane = new Planes({
     user: req.user._id,
-    nameProdut: req.body.nameProdut,
+    namePlane: req.body.namePlane,
     price: req.body.price,
-    imagesList: req.body.imagesList,
-    category: req.body.category,
-    descriptionProduct: req.body.descriptionProduct,
+    descriptionPlane: req.body.descriptionPlane,
   });
-  const createdProduct = await product.save();
-  res.status(201).json(createdProduct);
+  const createPlane = await plane.save();
+  res.status(201).json(createPlane);
 });
 
 // @desc    Update a product
