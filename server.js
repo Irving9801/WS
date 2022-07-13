@@ -5,6 +5,7 @@ import cors from "cors";
 import planesRoutes from "./src/routes/planesRoutes.js";
 import menuRoutes from "./src/routes/menuRoutes.js";
 import userRoutes from "./src/routes/userRoutes.js";
+import buyRoutes from "./src/routes/buyRoutes.js";
 import recipesRoutes from "./src/routes/recipesRoutes.js";
 import connectDB from "./src/config/db.js";
 import { notFound, errorHandler } from "./src/middleware/errorMiddleware.js";
@@ -26,6 +27,7 @@ app.use("/api/menu", menuRoutes);
 app.use("/api/recipes", recipesRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/planes", planesRoutes);
+app.use("/api/buy", buyRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running....");
