@@ -17,7 +17,7 @@ const TransSchema = mongoose.Schema(
     },
     saldo: {
       type: Number,
-      required: true,
+      required: false,
       default: 0,
     },
   },
