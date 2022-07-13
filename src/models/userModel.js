@@ -32,6 +32,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: false,
     },
+    university: {
+      type: String,
+      required: false,
+    },
     identity:{
       type: String,
       unique: true,
