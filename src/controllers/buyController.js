@@ -60,7 +60,7 @@ const deleteBuy = asyncHandler(async (req, res) => {
 const createBuy = asyncHandler(async (req, res) => {
   const product = new Buy({
     namePlane: req.body.namePlane,
-    PlanId: req.body.PlanId,
+    planId: req.body.planId,
     user: req.user._id,
     Saldo: req.body.Saldo,
   });
@@ -72,6 +72,5 @@ const createBuy = asyncHandler(async (req, res) => {
 // @desc    Update a product
 // @route   PUT /api/products/:id
 // @access  Private/Admin
-
 
 export { getBuy, getBuyById, deleteBuy, createBuy };
