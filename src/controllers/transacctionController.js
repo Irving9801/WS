@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Buy from "../models/buyModel.js";
+import Trans from "../models/transacctionModel.js";
 
 // @desc    Fetch all products
 // @route   GET /api/products
@@ -57,12 +58,12 @@ const deleteBuy = asyncHandler(async (req, res) => {
 // @desc    Create a product
 // @route   POST /api/products
 // @access  Private/Admin
-const createBuy = asyncHandler(async (req, res) => {
-  const product = new Buy({
-    namePlane: req.body.namePlane,
-    planId: req.body.planId,
+const createTrans = asyncHandler(async (req, res) => {
+  const product = new Trans({
+    pago: req.body.pago,
+    saldo: req.body.saldo,
     user: req.user._id,
-    Saldo: req.body.Saldo,
+    toUser: req.body.toUser,
   });
 
   const createdProduct = await product.save();
@@ -73,4 +74,4 @@ const createBuy = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 
-export { getBuy, getBuyById, deleteBuy, createBuy };
+export { getBuy, getBuyById, deleteBuy, createTrans };
