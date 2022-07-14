@@ -39,6 +39,18 @@ const userSchema = mongoose.Schema(
     identity:{
       type: String,
       unique: true,
+    },
+    myRuta: {
+      typeof: String,
+      required: false,
+    },
+    profile: {
+      type: String,
+      required: true,
+    },
+    carnet: {
+      type: String,
+      required: true,
     }
   },
   {
