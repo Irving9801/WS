@@ -29,7 +29,7 @@ const getBuy = asyncHandler(async (req, res) => {
 // @route   GET /api/products/:id
 // @access  Public
 const getBuyById = asyncHandler(async (req, res) => {
-  const product = await Buy.find({user: req.params.id});
+  const product = await Buy.find({ user: req.params.id });
 
   if (product) {
     res.json(product);
@@ -72,5 +72,21 @@ const createBuy = asyncHandler(async (req, res) => {
 // @desc    Update a product
 // @route   PUT /api/products/:id
 // @access  Private/Admin
+const updateBuy = asyncHandler(async (req, res) => {
+  const { planId, namePlane, Saldo } = req.body;
 
-export { getBuy, getBuyById, deleteBuy, createBuy };
+  const buy = await Buy.findById(req.params.id);
+
+  if (buy) {
+    buy.planId = planId;
+    buy.namePlane = namePlane;
+    buy.Saldo = Saldo;
+
+    const updatedProduct = await product.save();
+    res.json(updatedProduct);
+  } else {
+    res.status(404);
+    throw new Error("Product not found");
+  }
+});
+export { getBuy, getBuyById, deleteBuy, createBuy ,updateBuy};

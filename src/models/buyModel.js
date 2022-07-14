@@ -16,7 +16,7 @@ const BuySchema = mongoose.Schema(
       required: true,
     },
     Saldo: {
-      type: Number,
+      type: String,
       required: true,
       default: 0,
     },

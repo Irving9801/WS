@@ -5,6 +5,7 @@ import {
   getBuyById,
   deleteBuy,
   createBuy,
+  updateBuy,
 } from '../controllers/buyController.js'
 import { protect, admin } from '../middleware/authMiddleware.js'
 
@@ -13,5 +14,6 @@ router
   .route('/:id')
   .get(getBuyById)
   .delete(protect, admin, deleteBuy)
+  .put(updateBuy)
 
 export default router

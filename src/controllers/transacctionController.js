@@ -30,7 +30,7 @@ const getTrans = asyncHandler(async (req, res) => {
 // @route   GET /api/products/:id
 // @access  Public
 const getBuyById = asyncHandler(async (req, res) => {
-  const product = await Buy.find({user: req.params.id});
+  const product = await Buy.find({ user: req.params.id });
 
   if (product) {
     res.json(product);
@@ -59,13 +59,15 @@ const deleteBuy = asyncHandler(async (req, res) => {
 // @route   POST /api/products
 // @access  Private/Admin
 const createTrans = asyncHandler(async (req, res) => {
+  const getBuy = await Buy.find({ user: req.user.id });
+  const { Saldo, _id } = getBuy[0];
+
   const product = new Trans({
     pago: req.body.pago,
-    saldo: req.body.saldo,
+    saldo: parseFloat(Saldo) - parseFloat(req.body.pago),
     user: req.user._id,
     toUser: req.body.toUser,
   });
-
   const createdProduct = await product.save();
   res.status(201).json(createdProduct);
 });
