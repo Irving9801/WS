@@ -46,11 +46,11 @@ const userSchema = mongoose.Schema(
     },
     profile: {
       type: String,
-      required: true,
+      required: false,
     },
     carnet: {
       type: String,
-      required: true,
+      required: false,
     }
   },
   {
