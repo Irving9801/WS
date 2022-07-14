@@ -6,10 +6,10 @@ import {
   deleteBuy,
   createBuy,
 } from '../controllers/buyController.js'
-import { createTrans } from '../controllers/transacctionController.js'
+import { createTrans, getTrans } from '../controllers/transacctionController.js'
 import { protect, admin } from '../middleware/authMiddleware.js'
 
-router.route('/').get(getBuy).post(protect, admin, createTrans)
+router.route('/').get(getTrans).post(protect, admin, createTrans)
 router
   .route('/:id')
   .get(getBuyById)

@@ -5,7 +5,7 @@ import Trans from "../models/transacctionModel.js";
 // @desc    Fetch all products
 // @route   GET /api/products
 // @access  Public
-const getBuy = asyncHandler(async (req, res) => {
+const getTrans = asyncHandler(async (req, res) => {
   const pageSize = 10;
   const page = Number(req.query.pageNumber) || 1;
 
@@ -18,8 +18,8 @@ const getBuy = asyncHandler(async (req, res) => {
       }
     : {};
 
-  const count = await Buy.countDocuments({ ...keyword });
-  const products = await Buy.find({ ...keyword })
+  const count = await Trans.countDocuments({ ...keyword });
+  const products = await Trans.find({ ...keyword })
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
@@ -74,4 +74,4 @@ const createTrans = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 
-export { getBuy, getBuyById, deleteBuy, createTrans };
+export { getTrans, getBuyById, deleteBuy, createTrans };
