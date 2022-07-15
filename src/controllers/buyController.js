@@ -71,22 +71,18 @@ const createBuy = asyncHandler(async (req, res) => {
 });
 
 // @desc    Update a product
-// @route   PUT /api/products/:id
-// @access  Private/Admin
+// @route   PUT /api/buy/:id
 const updateBuy = asyncHandler(async (req, res) => {
   const { planId, namePlane, Saldo, user } = req.body;
 
-  const buy = await Buy.findById({
-    user: ObjectId(req.params.id),
-  });
-
+  const buy = await Buy.findById(req.params.id);
   if (buy) {
     buy.planId = planId;
     buy.namePlane = namePlane;
     buy.Saldo = Saldo;
     buy.user = user;
 
-    const updatedProduct = await product.save();
+    const updatedProduct = await buy.save();
     res.json(updatedProduct);
   } else {
     res.status(404);

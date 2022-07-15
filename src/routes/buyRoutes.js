@@ -7,7 +7,6 @@ import {
   createBuy,
   updateBuy,
 } from '../controllers/buyController.js'
-import { protect, admin } from '../middleware/authMiddleware.js'
 
 router.route('/').get(getBuy).post(createBuy)
 router
