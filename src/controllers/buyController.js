@@ -62,7 +62,7 @@ const createBuy = asyncHandler(async (req, res) => {
   const product = new Buy({
     namePlane: req.body.namePlane,
     planId: req.body.planId,
-    user: req.user.user,
+    user: req.body.user,
     Saldo: req.body.Saldo,
   });
 
