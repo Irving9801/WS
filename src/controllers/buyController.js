@@ -30,7 +30,7 @@ const getBuy = asyncHandler(async (req, res) => {
 // @route   GET /api/products/:id
 // @access  Public
 const getBuyById = asyncHandler(async (req, res) => {
-  const product = await Buy.findById( req.params.id );
+  const product = await Buy.find({user: req.params.id} );
 
   if (product) {
     res.json(product);
