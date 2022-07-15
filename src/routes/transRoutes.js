@@ -2,7 +2,6 @@ import express from 'express'
 const router = express.Router()
 import {
   getBuy,
-  getBuyById,
   deleteBuy,
   createBuy,
 } from '../controllers/buyController.js'
