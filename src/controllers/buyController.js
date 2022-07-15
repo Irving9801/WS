@@ -1,4 +1,5 @@
 import asyncHandler from "express-async-handler";
+import mongoose from "mongoose";
 import Buy from "../models/buyModel.js";
 
 // @desc    Fetch all products
@@ -61,7 +62,7 @@ const createBuy = asyncHandler(async (req, res) => {
   const product = new Buy({
     namePlane: req.body.namePlane,
     planId: req.body.planId,
-    user: req.user._id,
+    user: req.user.user,
     Saldo: req.body.Saldo,
   });
 
@@ -73,20 +74,23 @@ const createBuy = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 const updateBuy = asyncHandler(async (req, res) => {
-  const { planId, namePlane, Saldo } = req.body;
+  const { planId, namePlane, Saldo, user } = req.body;
 
-  const buy = await Buy.findById(req.params.id);
+  const buy = await Buy.findById({
+    user: ObjectId(req.params.id),
+  });
 
   if (buy) {
     buy.planId = planId;
     buy.namePlane = namePlane;
     buy.Saldo = Saldo;
+    buy.user = user;
 
     const updatedProduct = await product.save();
     res.json(updatedProduct);
   } else {
     res.status(404);
-    throw new Error("Product not found");
+    throw new Error("Usuario no encotrado");
   }
 });
-export { getBuy, getBuyById, deleteBuy, createBuy ,updateBuy};
+export { getBuy, getBuyById, deleteBuy, createBuy, updateBuy };
