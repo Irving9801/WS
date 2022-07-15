@@ -113,6 +113,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
+    user._id = req.user._id;
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
     user.typeUser = req.body.typeUser;
@@ -128,6 +129,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     const updatedUser = await user.save();
 
     res.json({
+      _id: req.user._id,
       name: updatedUser.name,
       email: updatedUser.email,
       typeUser: updatedUser.typeUser,
