@@ -29,8 +29,8 @@ const getTrans = asyncHandler(async (req, res) => {
 // @desc    Fetch single product
 // @route   GET /api/products/:id
 // @access  Public
-const getBuyById = asyncHandler(async (req, res) => {
-  const product = await Buy.find({ user: req.params.id });
+const getTransById = asyncHandler(async (req, res) => {
+  const product = await Trans.find({ user: req.params.id });
 
   if (product) {
     res.json(product);
@@ -73,4 +73,4 @@ const createTrans = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 
-export { getTrans, getBuyById, deleteBuy, createTrans };
+export { getTrans, getTransById, deleteBuy, createTrans };
