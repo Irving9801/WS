@@ -59,13 +59,10 @@ const deleteBuy = asyncHandler(async (req, res) => {
 // @route   POST /api/products
 // @access  Private/Admin
 const createTrans = asyncHandler(async (req, res) => {
-  const getBuy = await Buy.find({ user: req.user.id });
-  const { Saldo, _id } = getBuy[0];
 
   const product = new Trans({
     pago: req.body.pago,
-    saldo: parseFloat(Saldo) - parseFloat(req.body.pago),
-    user: req.user._id,
+    user: req.body.user,
     toUser: req.body.toUser,
   });
   const createdProduct = await product.save();

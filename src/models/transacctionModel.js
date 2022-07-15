@@ -15,11 +15,6 @@ const TransSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    saldo: {
-      type: String,
-      required: false,
-      default: 0,
-    },
   },
   {
     timestamps: true,
