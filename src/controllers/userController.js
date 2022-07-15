@@ -194,7 +194,15 @@ const updateUser = asyncHandler(async (req, res) => {
   if (user) {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
-    user.isAdmin = req.body.isAdmin;
+    user.typeUser = req.body.typeUser;
+    user.phone = req.body.phone;
+    user.Ruta = req.body.Ruta;
+    user.company = req.body.company;
+    user.identity = req.body.identity;
+    user.university = req.body.university;
+    user.myRuta = req.body.myRuta;
+    user.profile = req.body.profile;
+    user.carnet = req.body.carnet;
 
     const updatedUser = await user.save();
 
@@ -202,7 +210,15 @@ const updateUser = asyncHandler(async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
+      typeUser: updatedUser.typeUser,
+      phone: updatedUser.phone,
+      Ruta: updatedUser.Ruta,
+      company: updatedUser.company,
+      identity: updatedUser.identity,
+      university: updatedUser.university,
+      myRuta: updatedUser.myRuta,
+      profile: updatedUser.profile,
+      carnet: updatedUser.carnet,
     });
   } else {
     res.status(404);
