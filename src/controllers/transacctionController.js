@@ -5,6 +5,17 @@ import Trans from "../models/transacctionModel.js";
 // @desc    Fetch all products
 // @route   GET /api/products
 // @access  Public
+const getTransToUSer = asyncHandler(async (req, res) => {
+  const product = await Trans.find({toUser: req.params.id} );
+
+  if (product) {
+    res.json(product);
+  } else {
+    res.status(404);
+    throw new Error("Product not found");
+  }
+});
+
 const getTrans = asyncHandler(async (req, res) => {
   const pageSize = 10;
   const page = Number(req.query.pageNumber) || 1;
@@ -73,4 +84,4 @@ const createTrans = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 
-export { getTrans, getTransById, deleteBuy, createTrans };
+export { getTrans, getTransById, deleteBuy, createTrans,getTransToUSer };
