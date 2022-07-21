@@ -38,4 +38,16 @@ const createUni = asyncHandler(async (req, res) => {
   res.status(201).json(createdProduct);
 });
 
-export { getUni, createUni};
+const deleteUni = asyncHandler(async (req, res) => {
+  const product = await Uni.findById(req.params.id);
+
+  if (product) {
+    await product.remove();
+    res.json({ message: "Product removed" });
+  } else {
+    res.status(404);
+    throw new Error("Product not found");
+  }
+});
+
+export { getUni, createUni, deleteUni };

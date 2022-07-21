@@ -10,11 +10,11 @@ const getCompany = asyncHandler(async (req, res) => {
 
   const keyword = req.query.keyword
     ? {
-      name: {
-        $regex: req.query.keyword,
-        $options: "i",
-      },
-    }
+        name: {
+          $regex: req.query.keyword,
+          $options: "i",
+        },
+      }
     : {};
 
   const count = await Company.countDocuments({ ...keyword });
@@ -38,4 +38,16 @@ const createCompany = asyncHandler(async (req, res) => {
   res.status(201).json(createdProduct);
 });
 
-export { getCompany, createCompany };
+const deleteCompany = asyncHandler(async (req, res) => {
+  const product = await Company.findById(req.params.id);
+
+  if (product) {
+    await product.remove();
+    res.json({ message: "Product removed" });
+  } else {
+    res.status(404);
+    throw new Error("Product not found");
+  }
+});
+
+export { getCompany, createCompany, deleteCompany };
