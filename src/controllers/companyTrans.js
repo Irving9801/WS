@@ -38,6 +38,9 @@ const createCompany = asyncHandler(async (req, res) => {
   res.status(201).json(createdProduct);
 });
 
+// @desc    Delete a product
+// @route   DELETE /api/company/:id
+// @access  Private/Admin
 const deleteCompany = asyncHandler(async (req, res) => {
   const product = await Company.findById(req.params.id);
 

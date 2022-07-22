@@ -72,19 +72,15 @@ const createPlanes = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 const updatePlanes = asyncHandler(async (req, res) => {
-  const { name, price, description, image, brand, category, countInStock } =
+  const { namePlane,price,descriptionPlane } =
     req.body;
 
-  const product = await Product.findById(req.params.id);
+  const product = await Planes.findById(req.params.id);
 
   if (product) {
-    product.name = name;
+    product.namePlane = namePlane;
     product.price = price;
-    product.description = description;
-    product.image = image;
-    product.brand = brand;
-    product.category = category;
-    product.countInStock = countInStock;
+    product.descriptionPlane = descriptionPlane;
 
     const updatedProduct = await product.save();
     res.json(updatedProduct);
